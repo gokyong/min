@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.wu.book.dao.TDao">
+	<select id="todolistDao" resultType="com.wu.book.dto.TodolistDto">
+	SELECT * FROM TODO WHERE TDAY = #{param1} AND USERID = #{param2}
+	</select>
+	
+	<update id="todosuccessDao">
+	UPDATE TODO SET TSUCCESS = '완료' WHERE TNUM = #{param1} AND USERID = #{param2}
+	</update>
+	
+	<update id="todoreturnDao">
+	UPDATE TODO SET TSUCCESS = '미완료' WHERE TNUM = #{param1} AND USERID = #{param2}
+	</update>
+	
+	<insert id="todowriteDao">
+	INSERT INTO TODO (TNUM, TTIME1, TTIME2, TDO, TSUCCESS, TDAY, USERID) VALUES (TODO_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, '미완료', #{param4}, #{param5})
+	</insert>
+	
+	<delete id="tododelete">
+	DELETE TODO WHERE TNUM = #{param1} AND USERID = #{param2}
+	</delete>
+	
+	<select id="todooneDao" resultType="com.wu.book.dto.TodolistDto">
+	SELECT * FROM TODO WHERE TNUM = #{param1} AND USERID =#{param2}
+	</select>
+	
+	<update id="todomodifyDao">
+	UPDATE TODO SET TTIME1=#{param1}, TTIME2=#{param2}, TDO=#{param3}, TDAY=#{param4} WHERE TNUM = #{param5} AND USERID =#{param6}
+	</update>
+	
+	<select id="todocountaDao" resultType="int">
+	SELECT COUNT (TNUM) FROM TODO WHERE TDAY = #{param1} AND USERID =#{param2}
+	</select>
+	
+	
+	<select id="todocountsDao" resultType="int">
+	SELECT COUNT (TNUM) FROM TODO WHERE TSUCCESS = '완료' AND TDAY = #{param1} AND USERID =#{param2}
+	</select>
+	
+</mapper>
+     

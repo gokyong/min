@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.wu.book.dao.BDao">
+	<select id="boardlistDao" resultType="com.wu.book.dto.BoardcontentDto">
+		SELECT * FROM BOARD ORDER BY JOIN_DATE
+	</select>
+	
+	<insert id="boardwriteDao">
+		INSERT INTO BOARD (BNUM, BTITLE, BCONTENT, USERID) VALUES (BOARD_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3})
+	</insert>
+	
+	<select id="boardviewDao" resultType="com.wu.book.dto.BoardcontentDto">
+		SELECT * FROM BOARD WHERE BNUM = #{param1}
+	</select>
+	
+	<update id="boardmodifyDao">
+		UPDATE BOARD SET BTITLE= #{param2}, BCONTENT= #{param3} WHERE BNUM = #{param1} 
+	</update>
+	
+	<delete id="boarddeleteDao">
+		DELETE BOARD WHERE BNUM = #{param1}
+	</delete>
+</mapper>
+    
